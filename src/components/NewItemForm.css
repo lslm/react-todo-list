@@ -1,0 +1,11 @@
+.new-item-form {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-item-input {
+  width: 100%;
+  margin-right: 1em;
+}
