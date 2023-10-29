@@ -4,5 +4,7 @@
 }
 
 .done {
-  background: red;
+  color: rgb(151, 151, 151);
+  font-style: italic;
+  text-decoration: line-through;
 }

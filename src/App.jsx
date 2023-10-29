@@ -10,7 +10,8 @@ import NewItemForm from './components/NewItemForm'
 import { useEffect, useState, useRef } from 'react';
 
 function App() {
-  const [items, setItems] = useState([])
+  const persistedItems = localStorage.getItem('items') || "[]"
+  const [items, setItems] = useState(JSON.parse(persistedItems))
   const isInitialMount = useRef(true)
 
   const addNewItem = (description) => {
@@ -22,6 +23,14 @@ function App() {
 
     setItems([...items, item])
   }
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+      return
+    }
+    console.log("Carregado")
+  }, [])
 
   const changeDone = (itemId, done) => {
     console.log(`Updating item id ${itemId} to done = ${done}`)
@@ -46,7 +55,7 @@ function App() {
     if (isInitialMount.current) {
       isInitialMount.current = false
     } else {
-      console.log(`Current items: ${items}`)
+      localStorage.setItem('items', JSON.stringify(items))
     }
   }, [items])
 

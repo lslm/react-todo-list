@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react"
 
 
 function Item({item, changeDone, deleteItem}) {
+  console.log(item)
   const [done, setDone] = useState(item.done)
 
   function handleToggleDone() {
@@ -26,7 +27,7 @@ function Item({item, changeDone, deleteItem}) {
         {item.description}
       </Typography>
 
-      <Checkbox value={item.done} onChange={handleToggleDone}/>
+      <Checkbox checked={item.done} onChange={handleToggleDone}/>
 
       <Button onClick={handleDeleteItemClick}>Delete</Button>
     </div>
