@@ -2,11 +2,11 @@ import { Checkbox, Typography } from "@mui/material"
 
 import './Item.css'
 
-function Item() {
+function Item(props) {
   return (
     <div className="item">
       <Typography variant="body1">
-        Item para ser completado
+        { props.description }
       </Typography>
       <Checkbox />
     </div>

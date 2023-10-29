@@ -1,8 +1,20 @@
 import { Button, TextField } from "@mui/material"
 
 import './NewItemForm.css'
+import { useState } from "react"
 
-function NewItemForm() {
+function NewItemForm({ addNewItemCallback }) {
+  const [newItemDescription, setNewItemDescription] = useState("")
+
+  const handleChangeDescription = (event) => {
+    setNewItemDescription(event.target.value)
+  }
+
+  const handleAddNewItem = () => {
+    addNewItemCallback(newItemDescription)
+    setNewItemDescription("")
+  }
+
   return (
     <div className="new-item-form">
       <div className="new-item-input">
@@ -11,11 +23,17 @@ function NewItemForm() {
           variant="outlined"
           size="small"
           fullWidth
+          value={newItemDescription}
+          onChange={handleChangeDescription}
         />
       </div>
 
 
-      <Button variant="contained">Adicionar</Button>
+      <Button
+        variant="contained"
+        onClick={handleAddNewItem}>
+        Adicionar
+      </Button>
     </div>
   )
 }
