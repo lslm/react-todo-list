@@ -7,14 +7,20 @@ import './App.css'
 import Header from './components/Header'
 import Item from './components/Item'
 import NewItemForm from './components/NewItemForm'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
-  const [items, setItems] = useState([])
+  const persistedItems = localStorage.getItem('items') || '[]'
+
+  const [items, setItems] = useState(JSON.parse(persistedItems))
 
   const addNewItem = (newItem) => {
     setItems([...items, newItem])
   }
+
+  useEffect(() => {
+    localStorage.setItem('items', JSON.stringify(items))
+  }, [items])
 
   return (
     <div>
